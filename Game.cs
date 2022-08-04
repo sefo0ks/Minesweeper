@@ -53,11 +53,17 @@ class Game
                     continue;
                 }
                 
-                Console.Write("Mines amount: ");
+                Console.Write($"Mines amount (max: {_width * _height}): ");
                 _mines = int.Parse(Console.ReadLine());
                 if (_mines < 0)
                 {
                     Console.WriteLine("Must be positive.");
+                    Console.ReadKey();
+                    continue;
+                }
+                if (_mines > _width * _height)
+                {
+                    Console.WriteLine("Can\'t be more than (width * height).");
                     Console.ReadKey();
                     continue;
                 }
