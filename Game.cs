@@ -157,10 +157,7 @@ class Game
                 _minesAround = grid[y, x].CountMinesAround(grid);
 
                 grid[y, x].Show(_minesAround);
-                if (_minesAround == 0 && grid[y, x].IsRevealed && grid[y, x].IsSafe)
-                    Console.Write("|");
-                else
-                    Console.Write(" |");
+                Console.Write("|");
             }
 
             Console.WriteLine();

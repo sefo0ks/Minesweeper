@@ -31,18 +31,18 @@ public class Cell
             if (isSafe)
             {
                 if (minesAround > 0)
-                    Console.Write(minesAround);
+                    Console.Write(minesAround + " ");
                 else
-                    Console.Write("██");
+                    Console.Write("  ");
             }
             else
             {
-                Console.Write(mineChar);
+                Console.Write(mineChar + " ");
             }
         }
         else
         {
-            Console.Write(" ");
+            Console.Write("██");
         }
     }
     public void Update(Cell[,] _grid, int _y, int _x)
