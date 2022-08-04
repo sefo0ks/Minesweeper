@@ -219,6 +219,7 @@ class Game
                                 grid[_y, _x].IsRevealed = true;
                             }
                         }
+                        Console.Clear();
                         DrawGrid();
                         Console.WriteLine("YOU LOST!");
                         Console.ReadKey();
@@ -240,6 +241,7 @@ class Game
                     grid[y, x].IsRevealed = true;
                 }
             }
+            Console.Clear();
             DrawGrid();
             Console.WriteLine("YOU WON!");
             Console.ReadKey();
