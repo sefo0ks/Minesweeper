@@ -1,6 +1,5 @@
 public class Cell
 {
-    private char mineChar = '*';
     private int y, x, minesAround;
     private bool isSafe;
 
@@ -31,19 +30,33 @@ public class Cell
             if (isSafe)
             {
                 if (minesAround > 0)
-                    Console.Write(minesAround + " ");
+                {
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.Write(minesAround);
+                    Console.ResetColor();
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.Write("█");
+                }
                 else
-                    Console.Write("  ");
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.Write("██");
+                }
             }
             else
             {
-                Console.Write(mineChar + " ");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("██");
             }
         }
         else
         {
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write("██");
         }
+
+        Console.ResetColor();
     }
     public void Update(Cell[,] _grid, int _y, int _x)
     {

@@ -37,18 +37,18 @@ class Game
 
                 Console.Write("Width: ");
                 _width = int.Parse(Console.ReadLine());
-                if (_width < 0 || _width > 30)
+                if (_width < 1 || _width > 30)
                 {
-                    Console.WriteLine("Must be positive. And less than 31");
+                    Console.WriteLine("Must be bigger than 0. And less than 31");
                     Console.ReadKey();
                     continue;
                 }
                 
                 Console.Write("Height: ");
                 _height = int.Parse(Console.ReadLine());
-                if (_height < 0 || _height > 30)
+                if (_height < 1 || _height > 30)
                 {
-                    Console.WriteLine("Must be positive. And less than 31");
+                    Console.WriteLine("Must be bigger than 0. And less than 31");
                     Console.ReadKey();
                     continue;
                 }
