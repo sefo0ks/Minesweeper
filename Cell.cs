@@ -45,9 +45,8 @@ public class Cell
             Console.Write(" ");
         }
     }
-    public void Update(Cell[,] _grid, int _y, int _x, out bool continueGame)
+    public void Update(Cell[,] _grid, int _y, int _x)
     {
-        continueGame = isSafe;
         if (IsRevealed)
             return;
 
@@ -66,10 +65,11 @@ public class Cell
 
                 if (_grid[_y + yOff, _x + xOff].IsSafe)
                 {
-                    if (_grid[_y + yOff, _x + xOff].CountMinesAround(_grid) == 0)
-                        _grid[_y + yOff, _x + xOff].Update(_grid, _y + yOff, _x + xOff, out continueGame);
-
-                    _grid[_y + yOff, _x + xOff].IsRevealed = true;
+                    if (_grid[_y, _x].CountMinesAround(_grid) == 0)
+                    {
+                        _grid[_y + yOff, _x + xOff].Update(_grid, _y + yOff, _x + xOff);
+                        _grid[_y + yOff, _x + xOff].IsRevealed = true;
+                    }
                 }
             }
         }

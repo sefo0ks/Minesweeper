@@ -8,13 +8,14 @@
     private static void Main(string[] args)
     {
         game.OnGameEnd += GameEnd;
-
-        game.Start();
+        while (true)
+        {
+            game.Start();
+        }
     }
 
     public static void GameEnd()
     {
-        Console.WriteLine("asdasdf");
         game = new();
         game.Start();
     }

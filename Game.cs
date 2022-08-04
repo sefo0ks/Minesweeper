@@ -4,7 +4,7 @@ class Game
     public event GameEnded? OnGameEnd;
 
     private Cell[,] grid;
-    private int mineCount = 10;
+    private int mineCount;
 
     public void Start()
     {
@@ -18,7 +18,6 @@ class Game
             }
         }
 
-        mineCount = 10;
         PlaceMines();
 
         DoLoop();
@@ -112,26 +111,9 @@ class Game
             if (!GetInput(out _x, out _y))
                 continue;
             
-            grid[_y, _x].Update(grid, _y, _x, out run);
-            CheckForWin(out run);
+            grid[_y, _x].Update(grid, _y, _x);
+            CheckForEnd(out run);
         }
-
-        for (int y = 0; y < Program.Height; y++)
-        {
-            for (int x = 0; x < Program.Width; x++)
-            {
-                grid[y, x].IsRevealed = true;
-            }
-        }
-
-        DrawGrid();
-        Console.WriteLine();
-        if (grid[_y, _x].IsRevealed && grid[_y, _x].IsSafe == false)
-            Console.WriteLine("YOU LOST!");
-        else
-            Console.WriteLine("YOU WON!");
-        Console.ReadKey();
-        End();
     }
 
     private void DrawGrid()
@@ -139,12 +121,16 @@ class Game
         Console.SetCursorPosition(0, 0);
         Console.CursorVisible = false;
 
-        Console.Write("   ");
+        Console.Write("  ");
         for (int i = 0; i < Program.Width; i++)
+        {
+            if (i == 9)
+                Console.Write(" ");
             if (i < 9)
                 Console.Write($" {i + 1} ");
             else
                 Console.Write(i + 1 + " ");
+        }
         Console.WriteLine();
 
         Console.Write("  +");
@@ -213,7 +199,7 @@ class Game
         return true;
     }
 
-    public void CheckForWin(out bool run)
+    public void CheckForEnd(out bool run)
     {
         int revealedCount = 0;
         for (int y = 0; y < Program.Height; y++)
@@ -221,12 +207,49 @@ class Game
             for (int x = 0; x < Program.Width; x++)
             {
                 if (grid[y, x].IsRevealed)
-                    revealedCount++;
+                {
+                    if (!grid[y, x].IsSafe == false)
+                        revealedCount++;
+                    else
+                    {
+                        for (int _y = 0; _y < Program.Height; _y++)
+                        {
+                            for (int _x = 0; _x < Program.Width; _x++)
+                            {
+                                grid[_y, _x].IsRevealed = true;
+                            }
+                        }
+                        DrawGrid();
+                        Console.WriteLine("YOU LOST!");
+                        Console.ReadKey();
+                        
+                        End();
+                        run = false;
+                        return;
+                    }
+                }
             }
         }
+        
+        if (revealedCount == (Program.Height * Program.Width) - mineCount)
+        {
+            for (int y = 0; y < Program.Height; y++)
+            {
+                for (int x = 0; x < Program.Width; x++)
+                {
+                    grid[y, x].IsRevealed = true;
+                }
+            }
+            DrawGrid();
+            Console.WriteLine("YOU WON!");
+            Console.ReadKey();
 
-        run = revealedCount == (Program.Height * Program.Width) - mineCount;
-        run = !run;
+            End();
+            run = false;
+            return;
+        }
+
+        run = true;
     }
     private void End()
     {
