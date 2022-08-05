@@ -78,7 +78,7 @@ public class Cell
 
                 if (_grid[_y + yOff, _x + xOff].IsSafe)
                 {
-                    if (_grid[_y, _x].CountMinesAround(_grid) == 0 || _grid[_y + yOff, _x + xOff].CountMinesAround(_grid) == 0)
+                    if (_grid[_y, _x].CountMinesAround(_grid) == 0)
                     {
                         _grid[_y + yOff, _x + xOff].Update(_grid, _y + yOff, _x + xOff);
                         _grid[_y + yOff, _x + xOff].IsRevealed = true;
