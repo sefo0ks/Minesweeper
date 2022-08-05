@@ -40,7 +40,7 @@ public class Cell
                 }
                 else
                 {
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("██");
                 }
             }
