@@ -82,6 +82,8 @@ class Game
         Program.Width = _width;
 
         grid = new Cell[Program.Height, Program.Width];
+    
+        Console.SetWindowSize(Program.Width * 2 + 8, Program.Height + 5);
     }
 
     private void PlaceMines()
@@ -127,13 +129,11 @@ class Game
         Console.SetCursorPosition(0, 0);
         Console.CursorVisible = false;
 
-        Console.Write("  ");
+        Console.Write("   ");
         for (int i = 0; i < Program.Width; i++)
         {
-            if (i == 9)
-                Console.Write(" ");
             if (i < 9)
-                Console.Write($" {i + 1} ");
+                Console.Write($"{i + 1} ");
             else
                 Console.Write(i + 1 + " ");
         }
@@ -141,7 +141,7 @@ class Game
 
         Console.Write("  +");
         for (int i = 0; i < Program.Width; i++)
-            Console.Write("--+");
+            Console.Write("--");
         Console.WriteLine();
 
         int _minesAround = 0;
@@ -157,13 +157,13 @@ class Game
                 _minesAround = grid[y, x].CountMinesAround(grid);
 
                 grid[y, x].Show(_minesAround);
-                Console.Write("|");
+                //Console.Write("|");
             }
 
-            Console.WriteLine();
-            Console.Write("  +");
-            for (int i = 0; i < Program.Width; i++)
-                Console.Write("--+");
+            //Console.WriteLine();
+            //Console.Write("  +");
+            //for (int i = 0; i < Program.Width; i++)
+            //    Console.Write("--+");
             Console.WriteLine();
         }
     }
@@ -179,7 +179,7 @@ class Game
             x = int.Parse(Console.ReadLine()) - 1;
             if (x < 0 || x > Program.Width - 1)
             {
-                Console.WriteLine("Too small or big X.");
+                Console.Write("Too small or big X.");
                 Console.ReadKey();
                 return false;
             }
@@ -187,7 +187,7 @@ class Game
             y = int.Parse(Console.ReadLine()) - 1;
             if (y < 0 || y > Program.Height - 1)
             {
-                Console.WriteLine("Too small or big Y.");
+                Console.Write("Too small or big Y.");
                 Console.ReadKey();
                 return false;
             }
