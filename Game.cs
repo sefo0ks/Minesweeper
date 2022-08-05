@@ -40,7 +40,7 @@ class Game
                 if (_width < 1 || _width > 30)
                 {
                     Console.WriteLine("Must be bigger than 0. And less than 31");
-                    Console.ReadKey();
+                    Console.ReadKey(true);
                     continue;
                 }
                 
@@ -49,7 +49,7 @@ class Game
                 if (_height < 1 || _height > 30)
                 {
                     Console.WriteLine("Must be bigger than 0. And less than 31");
-                    Console.ReadKey();
+                    Console.ReadKey(true);
                     continue;
                 }
                 
@@ -58,13 +58,13 @@ class Game
                 if (_mines < 0)
                 {
                     Console.WriteLine("Must be positive.");
-                    Console.ReadKey();
+                    Console.ReadKey(true);
                     continue;
                 }
                 if (_mines > _width * _height)
                 {
-                    Console.WriteLine("Can\'t be more than (width * height).");
-                    Console.ReadKey();
+                    Console.WriteLine($"Can\'t be more than {_width} * {_height}.");
+                    Console.ReadKey(true);
                     continue;
                 }
 
@@ -73,7 +73,7 @@ class Game
             catch (Exception)
             {
                 Console.Write("Only Numbers");
-                Console.ReadKey();
+                Console.ReadKey(true);
             }
         }
 
@@ -205,7 +205,7 @@ class Game
             if (x < 0 || x > Program.Width - 1)
             {
                 Console.Write("Too small or big X.");
-                Console.ReadKey();
+                Console.ReadKey(true);
                 return false;
             }
             Console.Write("y: ");
@@ -213,14 +213,14 @@ class Game
             if (y < 0 || y > Program.Height - 1)
             {
                 Console.Write("Too small or big Y.");
-                Console.ReadKey();
+                Console.ReadKey(true);
                 return false;
             }
         }
         catch (Exception)
         {
             Console.Write("Only Numbers");
-            Console.ReadKey();
+            Console.ReadKey(true);
             return false;
         }
 
@@ -250,7 +250,7 @@ class Game
                         Console.Clear();
                         DrawGrid();
                         Console.WriteLine("YOU LOST!");
-                        Console.ReadKey();
+                        Console.ReadKey(true);
                         
                         End();
                         run = false;
@@ -272,7 +272,7 @@ class Game
             Console.Clear();
             DrawGrid();
             Console.WriteLine("YOU WON!");
-            Console.ReadKey();
+            Console.ReadKey(true);
 
             End();
             run = false;
