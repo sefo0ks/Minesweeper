@@ -132,10 +132,22 @@ class Game
         Console.Write("   ");
         for (int i = 0; i < Program.Width; i++)
         {
+            if (i % 2 == 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
+            else
+            {
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
+            }
             if (i < 9)
                 Console.Write($"{i + 1} ");
             else
-                Console.Write(i + 1 + " ");
+                Console.Write(i + 1 + "");
+            
+            Console.ResetColor();
         }
         Console.WriteLine();
 
@@ -147,10 +159,23 @@ class Game
         int _minesAround = 0;
         for (int y = 0; y < Program.Height; y++)
         {
-            if (y < 9)
-                Console.Write($"{y + 1} |");
+            if (y % 2 == 0)
+            {
+                Console.BackgroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Black;
+            }
             else
-                Console.Write($"{y + 1}|");
+            {
+                Console.BackgroundColor = ConsoleColor.Black;
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            if (y < 9)
+                Console.Write($"{y + 1} ");
+            else
+                Console.Write($"{y + 1}");
+            
+            Console.ResetColor();
+            Console.Write("|");
 
             for (int x = 0; x < Program.Width; x++)
             {
